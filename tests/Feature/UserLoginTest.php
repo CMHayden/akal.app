@@ -78,4 +78,23 @@ class UserLoginTest extends TestCase
         $this->assertAuthenticatedAs($user);
     }
 
+    /**
+     * An invalid user cannot be logged in.
+     *
+     * @return void
+     */
+    public function testInvalidUserCannotLogIn()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'invalid'
+        ]);
+
+        $response->assertSessionHasErrors();
+
+        $this->assertGuest();
+    }
+
 }
