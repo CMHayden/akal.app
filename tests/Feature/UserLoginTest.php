@@ -5,18 +5,24 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
 
 class UserLoginTest extends TestCase
 {
+    use RefreshDatabase;
+    
     /**
-     * A basic feature test example.
+     * Tests if a user can view the login form
      *
-     * @return void
+     * @return true if status is 200
+     * @return true if view is auth.login
      */
-    public function testExample()
+    public function testUserCanViewLoginForm()
     {
-        $response = $this->get('/');
+        $response = $this->get('/login');
 
         $response->assertStatus(200);
+        $response->assertViewIs('auth.login');
+
     }
 }
