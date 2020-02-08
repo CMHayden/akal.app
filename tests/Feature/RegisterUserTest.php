@@ -26,5 +26,20 @@ class RegisterUserTest extends TestCase
         $response->assertViewIs('auth.register');
     }
 
+    /**
+     * Tests if an authenticated user can view the registration form
+     *
+     * @return true if status is 302
+     * @return true if redirected to /home
+     */
+    public function testAuthenticatedUserCannotViewRegistrationForm()
+    {
+        $user = factory(User::class)->make();
 
+        $response = $this->actingAs($user)->get('/register');
+
+        $response->assertStatus(302);
+
+        $response->assertRedirect('/home');
+    }
 }
