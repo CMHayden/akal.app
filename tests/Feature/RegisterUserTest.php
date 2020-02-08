@@ -65,7 +65,7 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(302);
         
-        $response->assertRedirect('/home');
+        $response->assertRedirect('/');
 
         $this->assertAuthenticated();
     }
@@ -92,7 +92,7 @@ class RegisterUserTest extends TestCase
 
         $response->assertStatus(302);
         
-        $response->assertRedirect('/home');
+        $response->assertRedirect('/');
 
         $this->assertAuthenticated();
     }
