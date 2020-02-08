@@ -1,7 +1,7 @@
 <template>
 <div>
     <div class="form-group row">
-        <label for="userType" class="col-md-4 col-form-label text-md-right">User type</label>
+        <label for="userType" class="col-md-4 col-form-label text-md-right">I am a:</label>
 
         <div class="col-md-6">
             <div class="form-check">

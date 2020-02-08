@@ -37412,7 +37412,7 @@ var render = function() {
           staticClass: "col-md-4 col-form-label text-md-right",
           attrs: { for: "userType" }
         },
-        [_vm._v("User type")]
+        [_vm._v("I am a:")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
