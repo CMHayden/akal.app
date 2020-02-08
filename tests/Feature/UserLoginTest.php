@@ -25,4 +25,20 @@ class UserLoginTest extends TestCase
         $response->assertViewIs('auth.login');
 
     }
+        /**
+     * Tests if an authenticated user can view the login form
+     *
+     * @return true if status is 302
+     * @return true if redirected to /home
+     */
+    public function testAuthenticatedUserCannotViewLoginForm()
+    {
+        $user = factory(User::class)->make();
+
+        $response = $this->actingAs($user)->get('/login');
+
+        $response->assertStatus(302);
+
+        $response->assertRedirect('/home');
+    }
 }
