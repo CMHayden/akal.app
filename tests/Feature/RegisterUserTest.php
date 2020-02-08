@@ -69,4 +69,32 @@ class RegisterUserTest extends TestCase
 
         $this->assertAuthenticated();
     }
+
+    /**
+     * Tests if a patient user can register
+     *
+     * @return true if status is 302
+     * @return true if redirected to home page
+     * @return true if user is authenticated
+     */
+    public function testPatientUserCanRegister()
+    {
+        $user = factory(User::class)->make();
+
+        $response = $this->post('/register', [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'userType' => 'patient',
+            'patientEmail' => ''
+        ]);
+
+        $response->assertStatus(302);
+        
+        $response->assertRedirect('/home');
+
+        $this->assertAuthenticated();
+    }
+
 }
