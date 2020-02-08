@@ -59,5 +59,23 @@ class UserLoginTest extends TestCase
         $this->assertGuest();
     }
 
+    /**
+     * A valid user can be logged in.
+     *
+     * @return void
+     */
+    public function testUserCanLogIn()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password'
+        ]);
+
+        $response->assertStatus(302);
+
+        $this->assertAuthenticatedAs($user);
+    }
 
 }
