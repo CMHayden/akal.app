@@ -42,4 +42,31 @@ class RegisterUserTest extends TestCase
 
         $response->assertRedirect('/home');
     }
+
+    /**
+     * Tests if a carer user can register
+     *
+     * @return true if status is 302
+     * @return true if redirected to home page
+     * @return true if user is authenticated
+     */
+    public function testCarerUserCanRegister()
+    {
+        $user = factory(User::class)->make();
+
+        $response = $this->post('/register', [
+            'name' => $user->name,
+            'email' => $user->email,
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'userType' => 'carer',
+            'patientEmail' => 'testemail@test.net'
+        ]);
+
+        $response->assertStatus(302);
+        
+        $response->assertRedirect('/home');
+
+        $this->assertAuthenticated();
+    }
 }
