@@ -25,7 +25,8 @@ class UserLoginTest extends TestCase
         $response->assertViewIs('auth.login');
 
     }
-        /**
+    
+    /**
      * Tests if an authenticated user can view the login form
      *
      * @return true if status is 302
@@ -41,4 +42,22 @@ class UserLoginTest extends TestCase
 
         $response->assertRedirect('/home');
     }
+    
+    /**
+     * A logged in user can be logged out.
+     *
+     * @return void
+     */
+    public function testAuthenticatedUserCanLogOut()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->post('/logout');
+
+        $response->assertStatus(302);
+
+        $this->assertGuest();
+    }
+
+
 }
