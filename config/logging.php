@@ -81,12 +81,12 @@ return [
         ],
 
         'syslog' => [
-            'driver' => 'syslog',
+            'driver' => 'papertrail',
             'level' => 'debug',
         ],
 
         'errorlog' => [
-            'driver' => 'errorlog',
+            'driver' => 'papertrail',
             'level' => 'debug',
         ],
     ],
