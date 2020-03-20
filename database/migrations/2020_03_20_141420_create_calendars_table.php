@@ -15,6 +15,10 @@ class CreateCalendarsTable extends Migration
     {
         Schema::create('calendars', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('event_name');
+            $table->string('start_date');
+            $table->date('end_date');
+            $table->bigInteger('patientID');
             $table->timestamps();
         });
     }
