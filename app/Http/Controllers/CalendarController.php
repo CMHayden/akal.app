@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Calendar;
 use Illuminate\Http\Request;
+use App\HTTP\Resources\CalendarResource;
+use Symfony\Component\HttpFoundation\Response;
 
 class CalendarController extends Controller
 {
@@ -14,7 +16,7 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        //
+        return CalendarResource::collection(Calendar::all());
     }
 
     /**
@@ -35,7 +37,12 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $new_calendar = Calendar::create($request->all());
+        return response()->json([
+            'data' => new CalendarResource($new_calendar),
+            'message' => 'New event added',
+            'status' => Response::HTTP_CREATED
+        ]);
     }
 
     /**
@@ -46,7 +53,7 @@ class CalendarController extends Controller
      */
     public function show(Calendar $calendar)
     {
-        //
+        return response($calendar, Response::HTTP_OK);
     }
 
     /**
@@ -69,7 +76,12 @@ class CalendarController extends Controller
      */
     public function update(Request $request, Calendar $calendar)
     {
-        //
+        $calendar->update($request->all());
+        return response()->json([
+            'data' => new CalendarResource($calendar),
+            'message' => 'Event updated',
+            'status' => Response::HTTP_ACCEPTED
+        ]);
     }
 
     /**
@@ -80,6 +92,7 @@ class CalendarController extends Controller
      */
     public function destroy(Calendar $calendar)
     {
-        //
+        $calendar->delete();
+        return response('Event removed.', Response::HTTP_NO_CONTENT);
     }
 }
