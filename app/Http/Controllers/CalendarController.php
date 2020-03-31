@@ -6,6 +6,7 @@ use App\Calendar;
 use Illuminate\Http\Request;
 use App\HTTP\Resources\CalendarResource;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -37,7 +38,9 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        $new_calendar = Calendar::create($request->all());
+        
+        $patientEmail = auth('api')->user()->patient_email;
+        $new_calendar = Calendar::create(array_merge($request->all(), ['patient_email' => $patientEmail]));
         return response()->json([
             'data' => new CalendarResource($new_calendar),
             'message' => 'New event added',

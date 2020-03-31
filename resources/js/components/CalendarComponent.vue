@@ -38,7 +38,7 @@
           </div>
         </form>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-10">
         <Fullcalendar @eventClick="showEvent" :plugins="calendarPlugins" :events="events"/>
       </div>
     </div>
@@ -50,6 +50,7 @@ import Fullcalendar from "@fullcalendar/vue";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import axios from "axios";
+
 export default {
   components: {
     Fullcalendar
@@ -57,6 +58,7 @@ export default {
   data() {
     return {
       calendarPlugins: [dayGridPlugin, interactionPlugin],
+      themes: "darkly",
       events: "",
       newEvent: {
         event_name: "",
@@ -72,6 +74,9 @@ export default {
   },
   methods: {
     addNewEvent() {
+      let token = cookie.get("token");
+      //send Authorization token with each request
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       axios
         .post("/api/calendar", {
           ...this.newEvent
@@ -123,6 +128,9 @@ export default {
         );
     },
     getEvents() {
+      let token = cookie.get("lol");
+      //send Authorization token with each request
+      axios.defaults.headers.common["Authorization"] = `lmao`;
       axios
         .get("/api/calendar")
         .then(resp => (this.events = resp.data.data))
@@ -145,9 +153,6 @@ export default {
 <style lang="css">
 @import "~@fullcalendar/core/main.css";
 @import "~@fullcalendar/daygrid/main.css";
-.fc-title {
-  color: #fff;
-}
 .fc-title:hover {
   cursor: pointer;
 }

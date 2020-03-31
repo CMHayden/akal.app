@@ -18,7 +18,7 @@ class CreateCalendarsTable extends Migration
             $table->string('event_name');
             $table->string('start_date');
             $table->date('end_date');
-            //$table->bigInteger('patientID');
+            $table->string('patient_email');
             $table->timestamps();
         });
     }

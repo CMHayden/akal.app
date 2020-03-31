@@ -10,6 +10,6 @@ class Calendar extends Model
         'event_name',
         'start_date',
         'end_date',
-        'patientID'
+        'patient_email'
     ];
 }
