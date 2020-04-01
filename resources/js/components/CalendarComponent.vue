@@ -74,9 +74,6 @@ export default {
   },
   methods: {
     addNewEvent() {
-      let token = cookie.get("token");
-      //send Authorization token with each request
-      axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
       axios
         .post("/api/calendar", {
           ...this.newEvent
@@ -128,9 +125,6 @@ export default {
         );
     },
     getEvents() {
-      let token = cookie.get("lol");
-      //send Authorization token with each request
-      axios.defaults.headers.common["Authorization"] = `lmao`;
       axios
         .get("/api/calendar")
         .then(resp => (this.events = resp.data.data))
