@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\HTTP\Resources\CalendarResource;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class CalendarController extends Controller
 {
@@ -17,7 +19,9 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        return CalendarResource::collection(Calendar::all());
+        $patientEmail = auth::user()->patientEmail;
+
+        return CalendarResource::collection(Calendar::where('patient_email',"$patientEmail")->get());
     }
 
     /**
@@ -38,9 +42,9 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $patientEmail = auth('api')->user()->patient_email;
-        $new_calendar = Calendar::create(array_merge($request->all(), ['patient_email' => $patientEmail]));
+        $patientEmail = auth::user()->patientEmail;
+
+        $new_calendar = Calendar::create(array_merge($request->all(), ['patient_email'=>"$patientEmail"]));
         return response()->json([
             'data' => new CalendarResource($new_calendar),
             'message' => 'New event added',
@@ -79,7 +83,9 @@ class CalendarController extends Controller
      */
     public function update(Request $request, Calendar $calendar)
     {
-        $calendar->update($request->all());
+        $patientEmail = auth::user()->patientEmail;
+
+        $calendar->update(array_merge($request->all(), ['patient_email'=>"$patientEmail"]));
         return response()->json([
             'data' => new CalendarResource($calendar),
             'message' => 'Event updated',
