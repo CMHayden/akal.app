@@ -15,6 +15,10 @@ class CreateTemperaturesTable extends Migration
     {
         Schema::create('temperatures', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('patientEmail');
+            $table->bigInteger('maxTemp');
+            $table->bigInteger('minTemp');
+            $table->string('updatedBy')->nullable();
             $table->timestamps();
         });
     }
