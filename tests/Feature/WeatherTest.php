@@ -13,10 +13,10 @@ class WeatherTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testUserCanGetWeather()
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/weather/55.860916,-4.251433');
 
-        $response->assertStatus(200);
+        $response->assertStatus(200); 
     }
 }
