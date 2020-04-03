@@ -19,9 +19,24 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        $patientEmail = auth::user()->patientEmail;
+        if (Auth::check())
+        {
+            $userType = Auth::user()->userType;
 
-        return CalendarResource::collection(Calendar::where('patient_email',"$patientEmail")->get());
+            if($userType == "carer")
+            {
+                $patientEmail = auth::user()->patientEmail;
+
+                return CalendarResource::collection(Calendar::where('patient_email',"$patientEmail")->get());
+            }
+            
+            else if($userType =="patient")
+            {
+                $email = auth::user()->email;
+
+                return CalendarResource::collection(Calendar::where('patient_email', "$email")->get());
+            }
+        }    
     }
 
     /**
