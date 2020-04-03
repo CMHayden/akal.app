@@ -36,8 +36,7 @@ class HomeController extends Controller
 
             if($userType == "patient")
             {
-                return 'lol';
-                //return view('patientHome');
+                return view('patientHome');
             }
 
             
