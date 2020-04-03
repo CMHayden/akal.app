@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\temperature;
 use Illuminate\Http\Request;
+use App\HTTP\Resources\TemperatureResource;
+use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TemperatureController extends Controller
 {
@@ -14,7 +18,9 @@ class TemperatureController extends Controller
      */
     public function index()
     {
-        //
+        $patientEmail = auth::user()->patientEmail;
+
+        return TemperatureResource::collection(Temperature::where('patientEmail',"$patientEmail")->get());
     }
 
     /**
@@ -35,7 +41,21 @@ class TemperatureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $userEmail = auth::user()->email;
+        $patientEmail = auth::user()->patientEmail;
+
+        $new_temperature = Temperature::create([
+            'updatedBy'    => "$userEmail",
+            'patientEmail' => "$patientEmail",
+            'minTemp'      => $request->getContent()->minTemp,
+            'maxTemp'      => $request->getContent()->maxTemp
+        ]);
+        
+        return response()->json([
+            'data' => new TemperatureResource($new_temperature),
+            'message' => 'Temperature stored',
+            'status' => Response::HTTP_CREATED
+        ]);
     }
 
     /**
@@ -64,10 +84,9 @@ class TemperatureController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\temperature  $temperature
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, temperature $temperature)
+    public function updateTemperatures(Request $request)
     {
         //
     }
