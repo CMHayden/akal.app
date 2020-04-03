@@ -4,7 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class temperature extends Model
+class Temperature extends Model
 {
-    //
+    protected $fillable = [
+        'patientEmail',
+        'maxTemp',
+        'minTemp',
+        'updatedBy'
+    ];
 }
