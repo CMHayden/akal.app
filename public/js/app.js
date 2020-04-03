@@ -15048,6 +15048,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -15059,7 +15068,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       calendarPlugins: [_fullcalendar_daygrid__WEBPACK_IMPORTED_MODULE_1__["default"], _fullcalendar_interaction__WEBPACK_IMPORTED_MODULE_2__["default"]],
-      themes: "darkly",
       events: "",
       newEvent: {
         event_name: "",
@@ -15067,11 +15075,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         end_date: ""
       },
       addingMode: true,
-      indexToUpdate: ""
+      indexToUpdate: "",
+      patient_name: null,
+      patient_email: null,
+      min_temp: null,
+      max_temp: null
     };
   },
   created: function created() {
     this.getEvents();
+    this.getPatientDetails();
   },
   methods: {
     addNewEvent: function addNewEvent() {
@@ -15145,6 +15158,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       Object.keys(this.newEvent).forEach(function (key) {
         return _this5.newEvent[key] = "";
+      });
+    },
+    getPatientDetails: function getPatientDetails() {
+      var _this6 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/patientdetails").then(function (resp) {
+        return _this6.patient_email = resp.data[0].email, _this6.patient_name = resp.data[0].name;
+      })["catch"](function (err) {
+        return console.warn(err.response.data);
+      });
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/temperature").then(function (resp) {
+        return _this6.min_temp = resp.data.data[0].minTemp, _this6.max_temp = resp.data.data[0].maxTemp, console.log(resp.data.data[0]);
       });
     }
   },
@@ -51471,9 +51496,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8" }, [
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c(
+      "div",
+      { staticClass: "col-md-3" },
+      [
+        _vm.addingMode
+          ? _c("h3", [_vm._v("Add New Event")])
+          : [_c("h3", [_vm._v("Edit or Delete")])],
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
         _c(
           "form",
           {
@@ -51589,7 +51622,7 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-sm btn-primary",
+                          staticClass: "btn btn-sm btn-primary ",
                           on: { click: _vm.addNewEvent }
                         },
                         [_vm._v("Save Event")]
@@ -51633,21 +51666,35 @@ var render = function() {
               2
             )
           ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col-md-10" },
-        [
-          _c("Fullcalendar", {
-            attrs: { plugins: _vm.calendarPlugins, events: _vm.events },
-            on: { eventClick: _vm.showEvent }
-          })
-        ],
-        1
-      )
-    ])
+        ),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _c("h3", [_vm._v("Patient details")]),
+        _vm._v("\n    Name: " + _vm._s(_vm.patient_name) + " "),
+        _c("br"),
+        _vm._v("\n    Email: " + _vm._s(_vm.patient_email) + " "),
+        _c("br"),
+        _vm._v("\n    Max temperature: " + _vm._s(_vm.max_temp) + "°C "),
+        _c("br"),
+        _vm._v("\n    Min temperature: " + _vm._s(_vm.min_temp) + "°C\n\n  ")
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "col-md-6 calendar" },
+      [
+        _c("Fullcalendar", {
+          attrs: { plugins: _vm.calendarPlugins, events: _vm.events },
+          on: { eventClick: _vm.showEvent }
+        })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
