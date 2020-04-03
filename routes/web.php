@@ -18,3 +18,7 @@ Route::get('/welcome', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/debug-sentry', function () {
+    throw new Exception('My first Sentry error!');
+});
