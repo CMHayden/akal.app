@@ -15,6 +15,6 @@ class PatientDetailsController extends Controller
         $patientEmail = Auth::user()->patientEmail;
         $patient = User::where('email', "$patientEmail")->get();
 
-        return json_encode($patientName);
+        return json_encode($patient);
     }
 }
