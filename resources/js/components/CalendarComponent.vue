@@ -77,8 +77,8 @@ export default {
       indexToUpdate: "",
       patient_name: null,
       patient_email: null,
-      min_temp: "8",
-      max_temp: "18"
+      min_temp: null,
+      max_temp: null
     };
   },
   created() {
@@ -154,6 +154,15 @@ export default {
         .then(resp => (
           this.patient_email = resp.data[0].email,
           this.patient_name = resp.data[0].name
+        ))
+        .catch(err => console.warn(err.response.data));
+      
+      axios
+        .get("/api/temperature")
+        .then(resp => (
+          this.min_temp = resp.data.data[0].minTemp,
+          this.max_temp = resp.data.data[0].maxTemp,
+          console.log(resp.data.data[0])
         ))
     }
   },

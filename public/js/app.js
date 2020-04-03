@@ -15078,8 +15078,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       indexToUpdate: "",
       patient_name: null,
       patient_email: null,
-      min_temp: "8",
-      max_temp: "18"
+      min_temp: null,
+      max_temp: null
     };
   },
   created: function created() {
@@ -15165,6 +15165,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/patientdetails").then(function (resp) {
         return _this6.patient_email = resp.data[0].email, _this6.patient_name = resp.data[0].name;
+      })["catch"](function (err) {
+        return console.warn(err.response.data);
+      });
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("/api/temperature").then(function (resp) {
+        return _this6.min_temp = resp.data.data[0].minTemp, _this6.max_temp = resp.data.data[0].maxTemp, console.log(resp.data.data[0]);
       });
     }
   },
