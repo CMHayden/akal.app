@@ -1,48 +1,57 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <form @submit.prevent>
+<div class="row justify-content-center">
+  <div class="col-md-3">
+    <h3 v-if="addingMode">Add New Event</h3>
+    <template v-else><h3>Edit or Delete</h3></template>
+    <br>
+    <form @submit.prevent>
+      <div class="form-group">
+        <label for="event_name">Event Name</label>
+        <input type="text" id="event_name" class="form-control" v-model="newEvent.event_name">
+      </div>
+      <div class="row">
+        <div class="col-md-6">
           <div class="form-group">
-            <label for="event_name">Event Name</label>
-            <input type="text" id="event_name" class="form-control" v-model="newEvent.event_name">
+            <label for="start_date">Start Date</label>
+            <input
+              type="date"
+              id="start_date"
+              class="form-control"
+              v-model="newEvent.start_date"
+            >
           </div>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="start_date">Start Date</label>
-                <input
-                  type="date"
-                  id="start_date"
-                  class="form-control"
-                  v-model="newEvent.start_date"
-                >
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="end_date">End Date</label>
-                <input type="date" id="end_date" class="form-control" v-model="newEvent.end_date">
-              </div>
-            </div>
-            <div class="col-md-6 mb-4" v-if="addingMode">
-              <button class="btn btn-sm btn-primary" @click="addNewEvent">Save Event</button>
-            </div>
-            <template v-else>
-              <div class="col-md-6 mb-4">
-                <button class="btn btn-sm btn-success" @click="updateEvent">Update</button>
-                <button class="btn btn-sm btn-danger" @click="deleteEvent">Delete</button>
-                <button class="btn btn-sm btn-secondary" @click="addingMode = !addingMode">Cancel</button>
-              </div>
-            </template>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="end_date">End Date</label>
+            <input type="date" id="end_date" class="form-control" v-model="newEvent.end_date">
           </div>
-        </form>
+        </div>
+        <div class="col-md-6 mb-4" v-if="addingMode">
+          <button class="btn btn-sm btn-primary " @click="addNewEvent">Save Event</button>
+        </div>
+        <template v-else>
+          <div class="col-md-6 mb-4">
+            <button class="btn btn-sm btn-success" @click="updateEvent">Update</button>
+            <button class="btn btn-sm btn-danger" @click="deleteEvent">Delete</button>
+            <button class="btn btn-sm btn-secondary" @click="addingMode = !addingMode">Cancel</button>
+          </div>
+        </template>
       </div>
-      <div class="col-md-10">
-        <Fullcalendar @eventClick="showEvent" :plugins="calendarPlugins" :events="events"/>
-      </div>
-    </div>
+    </form>
+    <br>
+    <br>
+    <h3>Patient details</h3>
+    Name: {{patient_name}} <br>
+    Email: {{patient_email}} <br>
+    Max temperature: {{max_temp}}°C <br>
+    Min temperature: {{min_temp}}°C
+
   </div>
+  <div class="col-md-6 calendar">
+        <Fullcalendar @eventClick="showEvent" :plugins="calendarPlugins" :events="events"/>
+  </div>
+</div>
 </template>
 
 <script>
@@ -58,7 +67,6 @@ export default {
   data() {
     return {
       calendarPlugins: [dayGridPlugin, interactionPlugin],
-      themes: "darkly",
       events: "",
       newEvent: {
         event_name: "",
@@ -66,11 +74,16 @@ export default {
         end_date: ""
       },
       addingMode: true,
-      indexToUpdate: ""
+      indexToUpdate: "",
+      patient_name: null,
+      patient_email: null,
+      min_temp: "8",
+      max_temp: "18"
     };
   },
   created() {
     this.getEvents();
+    this.getPatientDetails();
   },
   methods: {
     addNewEvent() {
@@ -134,6 +147,14 @@ export default {
       Object.keys(this.newEvent).forEach(key => {
         return (this.newEvent[key] = "");
       });
+    },
+    getPatientDetails() {
+      axios
+        .get("/api/patientdetails")
+        .then(resp => (
+          this.patient_email = resp.data[0].email,
+          this.patient_name = resp.data[0].name
+        ))
     }
   },
   watch: {
