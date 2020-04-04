@@ -25,3 +25,6 @@ Route::post('/temperature/updateTemperatures', 'TemperatureController@updateTemp
 Route::get('/weather/{lat},{long}', "WeatherController@index");
 
 Route::get('/patientdetails', 'PatientDetailsController@index')->middleware('auth:api');
+
+Route::get('/sendMessage', 'NotificationController@sendSMS');
+Route::get('/sendEmail', 'NotificationController@sendEmail');
