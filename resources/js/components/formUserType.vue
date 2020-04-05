@@ -27,6 +27,15 @@
             <input id="patientEmail" type="email" class="form-control" name="patientEmail">
         </div>
     </div>
+
+    <div class="form-group row" v-show="userType === 'carer'">
+        <label for="phoneNumber" class="col-md-4 col-form-label text-md-right">Mobile Number</label>
+
+        <div class="col-md-6">
+            <input id="phoneNumber" type="tel" class="form-control" name="phoneNumber">
+        </div>
+    </div>
+    
 </div>
 </template>
 
