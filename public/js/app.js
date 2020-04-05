@@ -15378,6 +15378,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'form-user-type',
   mounted: function mounted() {
@@ -51957,6 +51966,33 @@ var render = function() {
         _vm._v(" "),
         _vm._m(0)
       ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.userType === "carer",
+            expression: "userType === 'carer'"
+          }
+        ],
+        staticClass: "form-group row"
+      },
+      [
+        _c(
+          "label",
+          {
+            staticClass: "col-md-4 col-form-label text-md-right",
+            attrs: { for: "phoneNumber" }
+          },
+          [_vm._v("Mobile Number")]
+        ),
+        _vm._v(" "),
+        _vm._m(1)
+      ]
     )
   ])
 }
@@ -51969,6 +52005,17 @@ var staticRenderFns = [
       _c("input", {
         staticClass: "form-control",
         attrs: { id: "patientEmail", type: "email", name: "patientEmail" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("input", {
+        staticClass: "form-control",
+        attrs: { id: "phoneNumber", type: "tel", name: "phoneNumber" }
       })
     ])
   }
