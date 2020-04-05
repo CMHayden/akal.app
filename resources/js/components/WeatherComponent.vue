@@ -6,10 +6,12 @@
   </div>
     <div v-if="location">
         <div class="location">
-            <h1 class="location-timezone">{{Timezone}}</h1>
+            <h2>{{timenow}}</h2>
+            <h4 class="date">{{datenow}}</h4>
         </div>
+        <br>
         <div class="temperature">
-            <h1>{{temperature}}°C</h1>
+            <h2>{{temperature}}°C</h2>
             <h4>{{tempdesc}}</h4>
         </div>
     </div>
@@ -23,12 +25,15 @@ export default {
             location:null,
             gettingLocation: false,
             errorStr:null,
-            Timezone:null,
             temperature:null,
-            tempdesc:null
+            tempdesc:null,
+            datenow:null,
+            timenow:null
         }
   },
   created() {
+   this.interval = setInterval(this.time, 1000);   
+
     //do we support geolocation
     if(!("geolocation" in navigator)) {
         this.errorStr = 'Geolocation is not available.';
@@ -42,7 +47,6 @@ export default {
         let url = '/api/weather/' + lat + ',' + long;
         axios.get(url)
              .then(data => {
-                this.Timezone = data.data.observations.location[0].state; 
                 this.temperature = data.data.observations.location[0].observation[0].temperature;
                 this.tempdesc = data.data.observations.location[0].observation[0].description;
                 console.log(data.data.observations.location[0].observation[0]);
@@ -51,6 +55,13 @@ export default {
     }, err => {
         this.errorStr = err.message;
     })
+  },
+  methods: {
+      time: function() {
+          this.datenow = moment().format('dddd [the] Do [of] MMMM, YYYY');
+          this.timenow = moment().format('h:mm a');
+
+      }
   }
 }
 </script>
