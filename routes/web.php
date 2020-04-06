@@ -32,3 +32,5 @@ Route::get('/debug-sentry', function () {
 });
 
 Route::post('image-upload', 'ImageUploadController@store')->name('image.upload.post');
+
+Route::post('/temperature/updateTemperatures', 'TemperatureController@updateTemperatures')->name('updateTemperature');
