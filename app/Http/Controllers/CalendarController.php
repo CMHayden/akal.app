@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Calendar;
+use App\User;
 use Illuminate\Http\Request;
 use App\HTTP\Resources\CalendarResource;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use App\HTTP\Resources\UserResource;
+use Illuminate\Support\Facades\Mail;
+
 
 
 class CalendarController extends Controller
@@ -99,6 +103,26 @@ class CalendarController extends Controller
     public function update(Request $request, Calendar $calendar)
     {
         $patientEmail = auth::user()->patientEmail;
+
+        $users = UserResource::collection(User::where('patientEmail',"$patientEmail")->get());
+
+        foreach ($users as $user)
+        {
+            $data = ['name' => $user->name, 'email' => $user->email, 'subject' => "Event updated!"];
+
+            try
+            {
+                Mail::send('emails.eventAlert', $data, function($message) use ($data)
+                {
+                    $message->to($data['email'], $data['name'])
+                            ->subject($data['subject']);
+                });
+            }
+            catch (Exception $e)
+            {
+                throw new Exception($e);
+            }
+        }
 
         $calendar->update(array_merge($request->all(), ['patient_email'=>"$patientEmail"]));
         return response()->json([
