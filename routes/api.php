@@ -27,3 +27,6 @@ Route::get('/weather/{lat},{long}', "WeatherController@index");
 Route::get('/patientdetails', 'PatientDetailsController@index')->middleware('auth:api');
 
 Route::get('/alert/{temp}', 'NotificationController@alertTemperature')->middleware('auth:api');
+
+Route::get('/image', 'ImageUploadController@getImage')->middleware('auth:api');
+Route::get('/showImage/{fileName}', 'ImageUploadController@showImage');
