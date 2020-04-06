@@ -17,8 +17,18 @@ Route::get('/welcome', function () {
 
 Auth::routes();
 
+Route::get('/patientDetails', function() {
+    return view('patientDetails');
+})->name('patient-details');
+
+Route::get('/userDetails', function() {
+    return "yolo";
+})->name('user-details');
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
+
+Route::post('image-upload', 'ImageUploadController@store')->name('image.upload.post');
