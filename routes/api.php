@@ -20,7 +20,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('/calendar', 'CalendarController')->middleware('auth:api');
 
 Route::apiResource('/temperature', 'TemperatureController')->middleware('auth:api');
-Route::post('/temperature/updateTemperatures', 'TemperatureController@updateTemperatures')->middleware('auth:api');
 
 Route::get('/weather/{lat},{long}', "WeatherController@index");
 

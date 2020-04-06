@@ -88,7 +88,15 @@ class TemperatureController extends Controller
      */
     public function updateTemperatures(Request $request)
     {
-        //
+        $patientEmail = auth::user()->patientEmail;
+
+        Temperature::where('patientEmail',"$patientEmail")->update(array(
+            'maxTemp' => $request->input('maxTemp'),
+            'minTemp' => $request->input('minTemp')
+        ));
+
+        return back()
+            ->with('tempStatus', "Successfully updated temperatures!");
     }
 
     /**
