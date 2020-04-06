@@ -33,7 +33,29 @@
 
                     <br><br>
 
-                    <h4>Next option...</h4>
+                    <h4>Change Patient's Temperatures</h4>
+                    <br>
+
+                    <form action="{{ route('updateTemperature') }}" method="POST" enctype="multipart/form-data">
+                        @if(session('tempStatus'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('tempStatus') }}
+                            </div>
+                        @endif
+                        @csrf
+                        <div class="form-group">
+                            <label for="maxTemp">Maximum temperature</label>
+                            <input type="text" name="maxTemp" class="form-control" aria-describedby="maxTempHelp" placeholder="Enter maximum temperature">
+                            <small id="maxTempHelp" class="form-text text-muted">We recommend a temperature of no more than 28 C.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Minimum temperature</label>
+                            <input type="text" name="minTemp" class="form-control" aria-describedby="minTempHelp" placeholder="Enter minimum temperature">
+                            <small id="minTempHelp" class="form-text text-muted">We recommend a temperature of no less than 15 C.</small>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
                 </div>
             </div>
         </div>
