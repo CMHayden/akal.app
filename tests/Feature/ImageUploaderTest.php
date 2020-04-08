@@ -2,18 +2,18 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\User;
-use Laravel\Passport\Passport;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
+use Laravel\Passport\Passport;
+use Tests\TestCase;
+use App\User;
  
 class ImageUploaderTest extends TestCase
 {
     /**
-     * A basic feature test example.
+     * A basic feature test for uploading an image and 
+     * asserting there is a redirect.
      *
      * @return void
      */
