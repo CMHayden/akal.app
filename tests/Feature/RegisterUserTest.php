@@ -59,6 +59,7 @@ class RegisterUserTest extends TestCase
             'email' => $user->email,
             'password' => 'password',
             'password_confirmation' => 'password',
+            'phoneNumber' => '+440000000000',
             'userType' => 'carer',
             'patientEmail' => 'testemail@test.net'
         ]);
@@ -86,6 +87,7 @@ class RegisterUserTest extends TestCase
             'email' => $user->email,
             'password' => 'password',
             'password_confirmation' => 'password',
+            'phoneNumber' => '',
             'userType' => 'patient',
             'patientEmail' => ''
         ]);
