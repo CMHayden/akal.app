@@ -31,6 +31,8 @@ Route::get('/debug-sentry', function () {
     throw new Exception('My first Sentry error!');
 });
 
+Route::get('/alert/{temp}', 'NotificationController@alertTemperature');
+
 Route::post('image-upload', 'ImageUploadController@store')->name('image.upload.post');
 
 Route::post('/temperature/updateTemperatures', 'TemperatureController@updateTemperatures')->name('updateTemperature');
