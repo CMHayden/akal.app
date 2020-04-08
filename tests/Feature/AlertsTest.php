@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
+use Laravel\Passport\Passport;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -13,9 +15,11 @@ class AlertsTest extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testAlertTemperature()
     {
-        $response = $this->get('/');
+        Passport::actingAs(factory(User::class)->create());
+
+        $response = $this->get('/alert/2');
 
         $response->assertStatus(200);
     }
