@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\HTTP\Resources\LayoutResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\layout;
 
 
 class HomeController extends Controller
@@ -36,7 +38,23 @@ class HomeController extends Controller
 
             if($userType == "patient")
             {
-                return view('patientHome');
+                $email = Auth::user()->email;
+                $layout = layout::where('patientEmail', "$email")->get()->last();
+
+                if($layout = "1")
+                {
+                    return view('patientHome');
+                }
+
+                if($layout = "2")
+                {
+                    return view('patientHome2');
+                }
+
+                if($layout =="3")
+                {
+                    return view('patientHome3');
+                }
             }
 
             
