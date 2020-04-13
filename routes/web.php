@@ -36,3 +36,5 @@ Route::get('/alert/{temp}', 'NotificationController@alertTemperature');
 Route::post('image-upload', 'ImageUploadController@store')->name('image.upload.post');
 
 Route::post('/temperature/updateTemperatures', 'TemperatureController@updateTemperatures')->name('updateTemperature');
+
+Route::post('/layouts/updateLayouts', 'LayoutController@updateLayouts')->name('updateLayout');
