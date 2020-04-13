@@ -15,6 +15,8 @@ class CreateLayoutTable extends Migration
     {
         Schema::create('layout', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('email');
+            $table->string('layout');
             $table->timestamps();
         });
     }
