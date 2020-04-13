@@ -73,7 +73,7 @@ class RegisterController extends Controller
             ]);
 
             layout::create([
-                'patientEmail' => $data['email'],
+                'email' => $data['email'],
                 'layout' => "1"
             ]);
         }

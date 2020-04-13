@@ -39,19 +39,19 @@ class HomeController extends Controller
             if($userType == "patient")
             {
                 $email = Auth::user()->email;
-                $layout = layout::where('patientEmail', "$email")->get()->last();
+                $layout = LayoutResource::collection(layout::where('email',"$email")->get());
 
-                if($layout = "1")
+                if($layout[0]->layout == "1")
                 {
                     return view('patientHome');
                 }
 
-                if($layout = "2")
+                if($layout[0]->layout == "2")
                 {
                     return view('patientHome2');
                 }
 
-                if($layout =="3")
+                if($layout[0]->layout == "3")
                 {
                     return view('patientHome3');
                 }

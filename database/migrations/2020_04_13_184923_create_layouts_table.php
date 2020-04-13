@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLayoutTable extends Migration
+class CreateLayoutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLayoutTable extends Migration
      */
     public function up()
     {
-        Schema::create('layout', function (Blueprint $table) {
+        Schema::create('layouts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('email');
             $table->string('layout');
@@ -28,6 +28,6 @@ class CreateLayoutTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('layout');
+        Schema::dropIfExists('layouts');
     }
 }
