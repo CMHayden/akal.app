@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\layout;
 use App\Temperature;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -69,6 +70,11 @@ class RegisterController extends Controller
                 'patientEmail'  => $data['email'],
                 'minTemp' => 15,
                 'maxTemp' => 28
+            ]);
+
+            layout::create([
+                'email' => $data['email'],
+                'layout' => "1"
             ]);
         }
         return User::create([

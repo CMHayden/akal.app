@@ -56,6 +56,40 @@
 
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
+
+                    <br><br>
+
+                    <h4>Change Patient's Layout</h4>
+                    <br>
+
+                    <form action="{{ route('updateLayout') }}" method="POST" enctype="multipart/form-data">
+                        @if(session('layoutStatus'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('layoutStatus') }}
+                            </div>
+                        @endif
+                        @csrf
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="layoutChoice" id="layoutChoice1" value="1" checked>
+                            <label class="form-check-label" for="layoutChoice1">
+                                Layout 1 - Default layout.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="layoutChoice" id="layoutChoice2" value="2">
+                            <label class="form-check-label" for="layoutChoice2">
+                                Layout 2 - Reversed layout.
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="layoutChoice" id="layoutChoice3" value="3">
+                            <label class="form-check-label" for="layoutChoice3">
+                                Layout 3 - stacked layout.
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
                 </div>
             </div>
         </div>
