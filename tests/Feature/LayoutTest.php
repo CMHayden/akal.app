@@ -2,21 +2,22 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
+use Laravel\Passport\Passport;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LayoutTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    public function testLayoutChange()
     {
-        $response = $this->get('/');
+        Passport::actingAs(factory(User::class)->create());
 
-        $response->assertStatus(200);
+        $response = $this->json('POST', '/layouts/updateLayouts', ['layoutChoice' => '3']);
+
+        $response->assertStatus(302)
+                ->assertSessionHas('layoutStatus', $value = "Successfully updated patients layout!");
+
     }
 }
