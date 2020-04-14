@@ -5,12 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Patient Details') }}</div>
+                <div class="card-header">Change Patient's Picture</div>
 
-                <div class="card-body">
-                    <h4>Change Patient's Picture</h4>
-                    <br>
-                
+                <div class="card-body">                
                     <form action="{{ route('image.upload.post') }}" method="POST" enctype="multipart/form-data">
                         @if(session('status'))
                             <div class="alert alert-success" role="alert">
@@ -31,11 +28,13 @@
                         <button type="submit" class="btn btn-primary">Upload</button>
                     </form>
 
-                    <br><br>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">Change Patient's Temperatures</div>
 
-                    <h4>Change Patient's Temperatures</h4>
-                    <br>
-
+                <div class="card-body">  
                     <form action="{{ route('updateTemperature') }}" method="POST" enctype="multipart/form-data">
                         @if(session('tempStatus'))
                             <div class="alert alert-success" role="alert">
@@ -57,11 +56,14 @@
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
 
-                    <br><br>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">Change Patient's Layout</div>
 
-                    <h4>Change Patient's Layout</h4>
-                    <br>
-
+                <div class="card-body">  
+                <br>
                     <form action="{{ route('updateLayout') }}" method="POST" enctype="multipart/form-data">
                         @if(session('layoutStatus'))
                             <div class="alert alert-success" role="alert">
@@ -69,6 +71,7 @@
                             </div>
                         @endif
                         @csrf
+                        <p>Select the patients layout from the options below:</p>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="layoutChoice" id="layoutChoice1" value="1" checked>
                             <label class="form-check-label" for="layoutChoice1">
@@ -87,7 +90,7 @@
                                 Layout 3 - stacked layout.
                             </label>
                         </div>
-
+                        <br>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </form>
                 </div>
