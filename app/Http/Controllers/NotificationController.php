@@ -83,6 +83,23 @@ class NotificationController extends Controller
         ]);
     }
 
+    public function alertOpenDoor()
+    {
+        $patientEmail = auth::user()->email;
+
+        $message = "Patient's door has been openned! If this is expected then this message can be ignored";
+
+        $users = UserResource::collection(User::where('patientEmail',"$patientEmail")->get());
+
+        foreach ($users as $user)
+        {
+            $data = ['name' => $user->name, 'email' => $user->email, 'subject' => $subject];
+
+            $this->sendTextMessage($message, $user->phoneNumber);
+            $this->sendEmail('emails.doorAlert', $data);
+        }
+    }
+
     private function sendTextMessage($message, $recipients)
     {
         $account_sid = getenv("TWILIO_SID");
