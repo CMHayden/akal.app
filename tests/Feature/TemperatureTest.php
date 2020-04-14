@@ -2,21 +2,25 @@
 
 namespace Tests\Feature;
 
+use App\User;
 use Tests\TestCase;
+use Laravel\Passport\Passport;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TemperatureTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    public function testTemperatureUpdate()
     {
-        $response = $this->get('/');
+        Passport::actingAs(factory(User::class)->create());
 
-        $response->assertStatus(200);
+        $response = $this->json('POST', '/temperature/updateTemperatures', [
+            'maxTemp' => '23',
+            'minTemp' => '13'
+            ]);
+
+        $response->assertStatus(302)
+                ->assertSessionHas('tempStatus', $value = "Successfully updated temperatures!");
+
     }
 }
