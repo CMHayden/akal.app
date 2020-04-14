@@ -7,7 +7,7 @@
     <form @submit.prevent>
       <div class="form-group">
         <label for="event_name">Event Name</label>
-        <input type="text" id="event_name" class="form-control" v-model="newEvent.event_name">
+        <input type="text" id="event_name" class="form-control" v-model="newEvent.event_name" required>
       </div>
       <div class="row">
         <div class="col-md-6">
