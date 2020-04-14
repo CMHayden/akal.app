@@ -28,7 +28,9 @@ class ImageUploaderTest extends TestCase
             'name' => "Just a test",
         ]);
 
-        $response->assertStatus(302);
+        $response->assertStatus(302)
+                ->assertSessionHas('status', $value = "Successfully uploaded image!");
+
 
     }
 }
