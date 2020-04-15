@@ -87,8 +87,10 @@ class NotificationController extends Controller
     {
         $patientEmail = auth::user()->email;
 
-        $message = "Patient's door has been openned! If this is expected then this message can be ignored";
+        $message = "Patient's door has been openned 😲! If this is expected then this message can be ignored";
 
+        $subject = "Patient's door has been openned 😲!";
+        
         $users = UserResource::collection(User::where('patientEmail',"$patientEmail")->get());
 
         foreach ($users as $user)
