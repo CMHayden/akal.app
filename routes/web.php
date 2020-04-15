@@ -33,7 +33,7 @@ Route::get('/debug-sentry', function () {
 
 Route::get('/alert/{temp}', 'NotificationController@alertTemperature');
 
-Route::get('/alert/open', 'NotificationController@alertOpenDoor');
+Route::get('/alertDoor/open', 'NotificationController@alertOpenDoor');
 
 Route::post('image-upload', 'ImageUploadController@store')->name('image.upload.post');
 
