@@ -1,3 +1,21 @@
+<p align="center"><img src="https://github.com/CMHayden/akal.app/blob/master/public/images/logoBlack.png?raw=true" width="400"></p>
+
+The purpose of this project is to allow the caregivers of dementia and Alzheimer’s patients to have a new way of interacting with a patient and all caregivers of a patient. This will be done by creating a system using hardware and software in a cost-efficient method to ensure it is accessible by anyone who believes it could be a benefit. In order to do this, three key components must be created. An API which will allow patients and caregivers to interact, a patient system which will display information to a patient while sending details about their environment to the caregivers, and a system which allows caregivers to interact with a patient’s schedule and set limits for when they would like to be alerted about the patient’s environment. Research was carried out to determine the best way to help the caregivers while not adding unnecessary stress to the patient.
+
+## Thought process behind AKAL
+
+AKAL began as a passion project to help a family member with vascular dementia. While at the time I wasn't knowledgeable enough nor did I have enough time to create such a system, it was the beginning of the planning for this project. At the end of my degree, with thanks to my supervisor Dr Padilla Stefano, I was able to begin to realize this dream as my dissertation.
+
+The key goal to AKAL has always been to ensure it will be available to anyone who could benefit from the system. This is what lead to many of the decisions to use cheaper optionssuch as a Raspberry Pi instead of more advanced hardware solutions.
+
+More information about AKAL can be found in my blog post [here](https://medium.com/@haydencallum4/akal-alzheimers-calendar-34cbadfb9d35).
+
+## AKAL's future
+
+AKAL is now an archived project that most likely will not be touched upon again due to lack of time now that I am starting a job. While I would love to continue the dream of an affordable solution which may help Alzheimer’s and Dementia, I feel I cannot without financial backing to allow me to work on AKAL as a full time job. If this is something you would be interested in, or you would simply like to add to this project and continue to develop it, feel free to reach out and see if I can help out in any way as the end goal of AKAL is to help others.
+
+One way to help encourage me to continue this project is to leave a star, or give it a shot and raise an issue with anything you think could be added or improved.
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
@@ -20,52 +38,6 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 - [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
